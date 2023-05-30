@@ -8,7 +8,7 @@ target_dir="$repo_dir/server"
 old_dir=`pwd`
 cd "$target_dir"
 
-golangci-lint run --disable-all -E gosimple -E govet -E ineffassign -E staticcheck -E typecheck -E unused |& cat
+golangci-lint run --disable-all -E gosimple -E govet -E ineffassign -E staticcheck -E typecheck -E unused
 cd "$old_dir"
 
 if [ $? -eq 0 ]; then
