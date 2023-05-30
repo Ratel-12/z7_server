@@ -1,5 +1,5 @@
 #!/bin/bash
-# There's a file exactly like that in ".git/hooks".
+# There's a file exactly like that in ".git/hooks" directory.
 hook_location=$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")
 dot_git=$(dirname "$hook_location")
 repo_dir=$(dirname "$dot_git")
