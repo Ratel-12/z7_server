@@ -1,0 +1,19 @@
+#!/bin/bash
+# There's a file exactly like that in ".git/hooks".
+hook_location=$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")
+dot_git=$(dirname "$hook_location")
+repo_dir=$(dirname "$dot_git")
+target_dir="$repo_dir/server"
+
+old_dir=`pwd`
+cd "$target_dir"
+
+golangci-lint run --disable-all -E gosimple -E govet -E ineffassign -E staticcheck -E typecheck -E unused |& cat
+cd "$old_dir"
+
+if [ $? -eq 0 ]; then
+    exit 0
+else
+    echo "Something went horribly wrong. Your code is bad. Fix it before you commit."
+    exit 1
+fi
